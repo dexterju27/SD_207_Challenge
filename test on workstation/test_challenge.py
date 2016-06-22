@@ -48,9 +48,19 @@ select = SelectKBest(chi2)
 pipe = Pipeline(steps=[('chi2', select), ("tf-idf",tf_transformer ),('SVM', clf)])
 para = {"chi2__k" : np.arange(50, 3100, 200), "tf-idf__use_idf" : [True, False]}
 estimator = GridSearchCV(pipe,para,n_jobs = 4)
-estimator.fit(dict_result.toarray(), y)
 print("result withbigram !")
-print( "best score "+ str(estimator.best_score_))
-f = open('result.txt', 'w')
-f.write("The best test score is " + str(estimator.best_score_ + " with " + str(estimator.best_params_)) + "\n")
+print("Performing grid search...")
+print("pipeline:", [name for name, _ in pipe.steps])
+print("parameters:")
+print(para)
+t0 = time()
+estimator.fit(dict_result.toarray(), y)
+print("done in %0.3fs" % (time() - t0))
+print()
+
+print("Best score: %0.3f" % estimator.best_score_)
+print("Best parameters set:")
+best_parameters = estimator.best_estimator_.get_params()
+for param_name in sorted(para.keys()):
+	print("\t%s: %r" % (param_name, best_parameters[param_name]))
 

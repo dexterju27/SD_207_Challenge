@@ -49,9 +49,8 @@ pipe = Pipeline(steps=[('chi2', select), ("tf-idf",tf_transformer ),('SVM', clf)
 para = {"chi2__k" : np.arange(50, 3100, 200), "tf-idf__use_idf" : [True, False]}
 estimator = GridSearchCV(pipe,para)
 estimator.fit(dict_result.toarray(), y)
-sys.stdout.write("result withbigram !")
-sys.stdout.write( "best score "+ estimator.best_score_)
-sys.stdout.flush() 
+print("result withbigram !")
+print( "best score "+ estimator.best_score_)
 f = open('result.txt', 'w')
 f.write("The best test score is " + estimator.best_score_ + " with " +estimator.best_params_)
 

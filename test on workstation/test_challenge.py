@@ -28,7 +28,7 @@ def readdata(filename):
 
 # sys.stdout.write( "will read file from :" + filename + "and save result to: " + result)
 # sys.stdout.flush() 
-
+print "programme starting!"
 
 y, X = readdata('train.csv')
 
@@ -47,10 +47,10 @@ clf = SVC(kernel='linear', gamma=2)
 select = SelectKBest(chi2)
 pipe = Pipeline(steps=[('chi2', select), ("tf-idf",tf_transformer ),('SVM', clf)])
 para = {"chi2__k" : np.arange(50, 3100, 200), "tf-idf__use_idf" : [True, False]}
-estimator = GridSearchCV(pipe,para)
+estimator = GridSearchCV(pipe,para,jobs = 4)
 estimator.fit(dict_result.toarray(), y)
 print("result withbigram !")
-print( "best score "+ estimator.best_score_)
+print( "best score "+ str(estimator.best_score_))
 f = open('result.txt', 'w')
-f.write("The best test score is " + estimator.best_score_ + " with " +estimator.best_params_)
+f.write("The best test score is " + str(estimator.best_score_ + " with " + str(estimator.best_params_)) + "\n")
 

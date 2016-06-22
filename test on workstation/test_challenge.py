@@ -47,7 +47,7 @@ clf = SVC(kernel='linear', gamma=2)
 select = SelectKBest(chi2)
 pipe = Pipeline(steps=[('chi2', select), ("tf-idf",tf_transformer ),('SVM', clf)])
 para = {"chi2__k" : np.arange(50, 3100, 200), "tf-idf__use_idf" : [True, False]}
-estimator = GridSearchCV(pipe,para,jobs = 4)
+estimator = GridSearchCV(pipe,para,n_jobs = 4)
 estimator.fit(dict_result.toarray(), y)
 print("result withbigram !")
 print( "best score "+ str(estimator.best_score_))

@@ -25,13 +25,12 @@ def readdata(filename):
 
 
 # get argument list using sys module
-filename  = sys.argv[1]
-result = sys.argv[2]
-sys.stdout.write( "will read file from :" + filename + "and save result to: " + result)
-sys.stdout.flush() 
+
+# sys.stdout.write( "will read file from :" + filename + "and save result to: " + result)
+# sys.stdout.flush() 
 
 
-y, X = readdata(filename)
+y, X = readdata('train.csv')
 
 from sklearn.feature_extraction.text import CountVectorizer
 bigram_vectorizer = CountVectorizer(ngram_range=(1, 2), min_df=1)

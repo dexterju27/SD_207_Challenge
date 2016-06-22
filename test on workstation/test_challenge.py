@@ -25,8 +25,8 @@ def readdata(filename):
 
 
 # get argument list using sys module
-filename  = sys.argv[0]
-result = sys.argv[1]
+filename  = sys.argv[1]
+result = sys.argv[2]
 sys.stdout.write( "will read file from :" + filename + "and save result to: " + result)
 sys.stdout.flush() 
 

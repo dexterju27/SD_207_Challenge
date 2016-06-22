@@ -52,6 +52,6 @@ estimator.fit(dict_result.toarray(), y)
 sys.stdout.write("result withbigram !")
 sys.stdout.write( "best score "+ estimator.best_score_)
 sys.stdout.flush() 
-f = open(result, 'w')
+f = open('result.txt', 'w')
 f.write("The best test score is " + estimator.best_score_ + " with " +estimator.best_params_)
 

@@ -7,6 +7,7 @@ import csv
 import io
 import nltk
 import string
+from time
 import re
 from nltk import wordpunct_tokenize
 from nltk import word_tokenize
@@ -50,7 +51,7 @@ para = {"chi2__k" : np.arange(50, 3100, 200), "tf-idf__use_idf" : [True, False]}
 estimator = GridSearchCV(pipe,para,n_jobs = 4)
 print("result withbigram !")
 print("Performing grid search...")
-print("pipeline:", [name for name, _ in pipe.steps])
+print("pipeline:", [name for name  in pipe.steps])
 print("parameters:")
 print(para)
 t0 = time()
